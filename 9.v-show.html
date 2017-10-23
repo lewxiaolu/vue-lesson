@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训 www.zhufengpeixun.cn</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="change">切换</button>
+   <div v-if="one">
+       one
+   </div>
+    <div v-else-if="two">
+        two
+    </div>
+   <div v-else>
+        three
+   </div>
+   <template v-if="one">
+        <div>1</div>
+        <div>2</div>
+   </template>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      one:true,
+      two:true,
+      three:true
+    },
+    methods: {
+      change(){
+        this.show = !this.show;
+      }
+    }
+  });
+</script>
+</body>
+</html>

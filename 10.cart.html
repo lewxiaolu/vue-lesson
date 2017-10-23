@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训 www.zhufengpeixun.cn</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <tr>
+                        <th><input type="checkbox" v-model="isSelectedAll" @change="changeSelectAll">全选</th>
+                        <th>商品</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>小计</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr v-for="(product,index) in products">
+                        <td><input type="checkbox" v-model="product.isSelected">全选</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.price}}</td>
+                        <td><input class="form-control" type="text" v-model="product.amount"></td>
+                        <td>{{product.price*product.amount}}</td>
+                        <td>
+                            <button @click="del(product)" class="btn btn-danger">删除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">合计 {{total}} 元</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      products: [
+        {isSelected: true, price: 10, amount: 1, name: '小米MIX'},
+        {isSelected: false, price: 20, amount: 2, name: 'iPhone8'}
+      ]
+    },
+    methods: {
+      del(product){
+        this.products = this.products.filter(item => item != product);
+        //this.products.splice(this.products.indexOf(product),1);
+      },
+      changeSelectAll(event){
+        this.products = this.products.map(item=>{
+          item.isSelected =  event.target.checked;
+          return item;
+        })
+      }
+    },
+    computed: {
+      total(){
+        return this.products.reduce((val,item) => {
+          return val + (item.price*item.amount);
+        }, 0);
+      },
+      isSelectedAll(){
+        return this.products.filter(item=>!item.isSelected).length==0;
+      }
+    }
+  });
+</script>
+</body>
+</html>

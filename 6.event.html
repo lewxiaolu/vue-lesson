@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训 www.zhufengpeixun.cn</title>
+</head>
+<body>
+<div id="app">
+  <button @click="fn('hello')">点我</button>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el:'#app',
+    data:{
+
+    },
+    methods:{
+      fn(msg){
+        alert(msg);
+      }
+    }
+  });
+</script>
+</body>
+</html>

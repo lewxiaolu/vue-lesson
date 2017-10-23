@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训 www.zhufengpeixun.cn</title>
+    <style>
+        div{
+            margin:10px;
+        }
+        .parent{
+            border:1px solid red;
+        }
+        .son{
+            border:1px solid yellow;
+        }
+        .grandson{
+            border:1px solid blue;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="parent" @click.capture="parent">
+        <div class="son" @click.capture="son">
+            <div class="grandson" @click.once.stop="grandson">
+                内容
+            </div>
+        </div>
+    </div>
+    <a href="http://www.baidu.com" @click.prevent="parent">珠峰官网</a>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {},
+    methods: {
+      parent(){
+        alert('parent');
+      },
+      son(){
+        alert('son');
+      },
+      grandson(){
+        alert('grandson');
+      }
+    }
+  });
+</script>
+</body>
+</html>

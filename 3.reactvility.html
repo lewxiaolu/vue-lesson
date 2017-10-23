@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训 www.zhufengpeixun.cn</title>
+</head>
+<body>
+<div id="app">
+    {{arr}}
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el:'#app',
+    data:{
+      arr:[1,2,3]
+    }
+  });
+  vm.arr = vm.arr.map(item=>item+1)
+</script>
+</body>
+</html>

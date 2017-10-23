@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训 www.zhufengpeixun.cn</title>
+</head>
+<body>
+<div id="app">
+{{school.address}}
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el:'#app',
+    data:{
+      school:{}
+    }
+  });
+  //vm.$set(vm.school,'address',"回龙观东大街");
+  /*vm.school = Object.assign({},vm.school,{
+    address:'回龙观东大街'
+  });*/
+  vm.school = {...vm.school,...{address:'回龙观东大街'}};
+</script>
+</body>
+</html>
