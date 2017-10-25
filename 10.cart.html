@@ -53,20 +53,25 @@
         //this.products.splice(this.products.indexOf(product),1);
       },
       changeSelectAll(event){
-        this.products = this.products.map(item=>{
-          item.isSelected =  event.target.checked;
-          return item;
-        })
+        this.isSelectedAll = event.target.checked;
       }
     },
     computed: {
       total(){
-        return this.products.reduce((val,item) => {
-          return val + (item.price*item.amount);
+        return this.products.reduce((val, item) => {
+          return val + (item.isSelected?item.price * item.amount:0);
         }, 0);
       },
-      isSelectedAll(){
-        return this.products.filter(item=>!item.isSelected).length==0;
+      isSelectedAll: {
+        get(){
+          return this.products.every(item => item.isSelected);
+        },
+        set(selectAll){
+          this.products = this.products.map(item => {
+            item.isSelected = selectAll;
+            return item;
+          })
+        }
       }
     }
   });

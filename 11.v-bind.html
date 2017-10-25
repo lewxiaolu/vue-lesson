@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .back{
+            background:red;
+        }
+        .fontSize{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+  <div :title = "title">zhufengpeixun</div>
+    <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png" alt="" :width="w" :height="h">
+绑定class 和原生的class并不冲突
+<div :class="{back:flag,fontSize:!flag}">
+    hello zfpx
+</div>
+<div :class="['back','fontSize']">
+    back fontSize
+</div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      title:"zfpx",
+      w:'100px',
+      h:'100px',
+      flag:true,
+    },
+    methods: {
+
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>
