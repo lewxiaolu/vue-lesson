@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+<button @click="changeGood">变好</button>
+<button @click="changeBad">变坏</button>
+    {{heart}}
+    {{wait}}
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+        heart:'心情',
+        wait:''
+    },
+    watch:{
+        heart(newVal,oldVal){
+          this.wait = '正在改变中...';
+          setTimeout(()=>{
+            this.wait = '完成...';
+          },2000)
+        }
+    },
+    methods: {
+      changeGood(){
+        this.heart = '好';
+      },
+      changeBad(){
+        this.heart = '坏';
+      }
+    },
+    computed: {
+
+    }
+  });
+</script>
+</body>
+</html>

@@ -21,8 +21,8 @@
                     </tr>
                     <tr v-for="(product,index) in products">
                         <td><input type="checkbox" v-model="product.isSelected">全选</td>
-                        <td>{{product.name}}</td>
-                        <td>{{product.price}}</td>
+                        <td v-text="product.name"></td>
+                        <td  v-text="product.price"></td>
                         <td><input class="form-control" type="text" v-model="product.amount"></td>
                         <td>{{product.price*product.amount}}</td>
                         <td>
@@ -42,7 +42,7 @@
   var vm = new Vue({
     el: '#app',
     data: {
-      products: [
+      products: localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [
         {isSelected: true, price: 10, amount: 1, name: '小米MIX'},
         {isSelected: false, price: 20, amount: 2, name: 'iPhone8'}
       ]
@@ -56,10 +56,18 @@
         this.isSelectedAll = event.target.checked;
       }
     },
+    watch: {
+      products: {
+        handler(){
+          localStorage.setItem('products', JSON.stringify(this.products));
+        },
+        deep: true
+      }
+    },
     computed: {
       total(){
         return this.products.reduce((val, item) => {
-          return val + (item.isSelected?item.price * item.amount:0);
+          return val + (item.isSelected ? item.price * item.amount : 0);
         }, 0);
       },
       isSelectedAll: {
